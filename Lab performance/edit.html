@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+</head>
+<body>
+
+    <h2>Edit Product</h2>
+
+    <form id="editForm">
+        <input type="hidden" id="productId" value="123">
+
+        <p>
+            <label>Product Name:<br>
+                <input type="text" id="productName" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Description:<br>
+                <textarea id="description" required></textarea>
+            </label>
+        </p>
+
+        <p>
+            <label>Price:<br>
+                <input type="number" id="price" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Quantity:<br>
+                <input type="number" id="quantity" required>
+            </label>
+        </p>
+
+        <p>
+            <label>Display:<br>
+                <select id="display" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <button type="submit">Update Product</button>
+        </p>
+    </form>
+
+    <script>
+        // Example of simple form submission handler
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Product updated successfully!");
+            // You can add your update logic here
+        });
+    </script>
+
+</body>
+</html>
