@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Email Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h3>Email Validation</h3>
+    <form onsubmit="return validateEmail()">
+        <label>Enter Email:</label><br>
+        <input type="text" id="email" placeholder="example@email.com"><br>
+        <button type="submit">Submit</button>
+        <div id="message"></div>
+    </form>
+</div>
+
+<script>
+    function validateEmail() {
+        let email = document.getElementById("email").value.trim();
+        let message = document.getElementById("message");
+
+        // Simple email pattern check
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (email === "") {
+            message.innerHTML = "Email field cannot be empty!";
+            message.className = "error";
+            return false;
+        }
+
+        if (!emailPattern.test(email)) {
+            message.innerHTML = "Invalid Email Address!";
+            message.className = "error";
+            return false;
+        }
+
+        message.innerHTML = "Valid Email Address!";
+        message.className = "success";
+        return true;
+    }
+</script>
+
+</body>
+</html>

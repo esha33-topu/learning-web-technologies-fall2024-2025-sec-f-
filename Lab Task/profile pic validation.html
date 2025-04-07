@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User ID & Picture Validation</title>
+</head>
+<body>
+    <form onsubmit="return validateUser()">
+
+        <label>User ID (Positive Number):</label>
+        
+        <input type="number" id="userid"><br>
+        <label>Upload Picture:</label>
+            <input type="file" id="picture"><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateUser() {
+              let userId = document.getElementById("userid").value;
+            let picture = document.getElementById("picture").value;
+            
+        if (userId === "" || parseInt(userId) <= 0) {
+                alert("User ID must be a positive number.");
+                return false;
+            }
+            if (picture === "") {
+                alert("Please upload a picture.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

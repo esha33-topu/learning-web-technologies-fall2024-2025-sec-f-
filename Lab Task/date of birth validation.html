@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple DOB Validation</title>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+        .form-container {
+            padding: 20px;
+            border: 1px solid #333;
+            width: 300px;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+        }
+        input {
+            width: 60px;
+            margin: 5px;
+            padding: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h3>Date of Birth</h3>
+    <form onsubmit="return validateDOB()">
+        <label>Day:</label>
+        <input type="text" id="day" maxlength="2"><br>
+        <label>Month:</label>
+        <input type="text" id="month" maxlength="2"><br>
+        <label>Year:</label>
+        <input type="text" id="year" maxlength="4"><br>
+        <button type="submit">Submit</button>
+        <div id="message"></div>
+    </form>
+</div>
+
+<script>
+    function validateDOB() {
+        var day = document.getElementById("day").value;
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        var message = document.getElementById("message");
+
+        if (day === "" || month === "" || year === "") {
+            message.innerHTML = "All fields are required!";
+            message.className = "error";
+            return false;
+        }
+
+        day = parseInt(day);
+        month = parseInt(month);
+        year = parseInt(year);
+
+        if (isNaN(day) || isNaN(month) || isNaN(year)) {
+            message.innerHTML = "Please enter valid numbers!";
+            message.className = "error";
+            return false;
+        }
+
+        if (day < 1 || day > 31) {
+            message.innerHTML = "Day must be between 1 and 31!";
+            message.className = "error";
+            return false;
+        }
+
+        if (month < 1 || month > 12) {
+            message.innerHTML = "Month must be between 1 and 12!";
+            message.className = "error";
+            return false;
+        }
+
+        if (year < 1900 || year > 2016) {
+            message.innerHTML = "Year must be between 1900 and 2016!";
+            message.className = "error";
+            return false;
+        }
+
+        message.innerHTML = "Valid Date of Birth!";
+        message.className = "success";
+        return true;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Name Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h3>Name Validation</h3>
+    <form onsubmit="return validateName()">
+        <label for="name">Enter Name:</label><br>
+        <input type="text" id="name" placeholder="First Last"><br>
+        <button type="submit">Submit</button>
+        <div id="message"></div>
+    </form>
+</div>
+
+<script>
+    function validateName() {
+        let name = document.getElementById("name").value.trim();
+        let message = document.getElementById("message");
+
+    
+        if (name === "") {
+            message.innerHTML = "Name cannot be empty!";
+            message.className = "error";
+            return false;
+        }
+
+        
+        if (!/^[a-zA-Z]/.test(name)) {
+            message.innerHTML = "Name must start with a letter!";
+            message.className = "error";
+            return false;
+        }
+
+        let words = name.split(" ").filter(word => word.length > 0);
+        if (words.length < 2) {
+            message.innerHTML = "Name must have at least two words!";
+            message.className = "error";
+            return false;
+        }
+
+        if (!/^[a-zA-Z.\- ]+$/.test(name)) {
+            message.innerHTML = "Name can only contain letters, dot (.), dash (-), or space!";
+            message.className = "error";
+            return false;
+        }
+
+       
+        message.innerHTML = "Valid Name!";
+        message.className = "success";
+        return true;
+    }
+</script>
+
+</body>
+</html>
